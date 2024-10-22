@@ -1,0 +1,18 @@
+set(TARGET_NAMES Game_UnitTests )
+
+project(${TARGET_NAMES})
+file(GLOB_RECURSE TARGET_SOURCES CONFIGURE_DEPENDS *.cpp *.h)
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${TARGET_SOURCES})
+add_executable(${TARGET_NAMES})
+
+target_link_libraries(${TARGET_NAMES} PRIVATE ${LIBRARIES_FOR_TEST})
+
+target_include_directories(${TARGET_NAMES} PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src)
+
+target_sources(${TARGET_NAMES} PRIVATE ${TARGET_SOURCES})
+
+include(CTest)
+include(Catch)
+catch_discover_tests(${TARGET_NAMES})
+list(APPEND EXECUTABLES ${TARGET_NAMES})
+set(EXECUTABLES "${EXECUTABLES}" CACHE INTERNAL "")

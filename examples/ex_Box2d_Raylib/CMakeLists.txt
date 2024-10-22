@@ -1,0 +1,17 @@
+set(TARGET_NAMES ex_Box2d_Raylib )
+
+project(${TARGET_NAMES})
+file(GLOB_RECURSE TARGET_SOURCES CONFIGURE_DEPENDS *.cpp *.h)
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${TARGET_SOURCES})
+add_executable(${TARGET_NAMES})
+
+target_link_libraries(${TARGET_NAMES} PRIVATE box2d raylib)
+
+target_include_directories(${TARGET_NAMES} PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR} 
+${CMAKE_SOURCE_DIR}/sources 
+)
+
+target_sources(${TARGET_NAMES} PRIVATE ${TARGET_SOURCES})
+
+list(APPEND EXECUTABLES ${TARGET_NAMES})
+set(EXECUTABLES "${EXECUTABLES}" CACHE INTERNAL "")
