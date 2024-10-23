@@ -2,7 +2,7 @@
 
 int main()
 {
-	Engine::WindowConfig Config{800, 600, "BreakOut", "v0.1"};
+	Engine::WindowConfig Config{SCREEN_WIDTH, SCREEN_HEIGHT, "BreakOut", "v0.1"};
 
 	if (Engine::Application::GetInstance()->Init(Config))
 	{

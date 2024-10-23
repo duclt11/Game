@@ -1,4 +1,7 @@
+#pragma once
 #include "pch.h"
+#include "GameManager\Singleton.h"
+
 namespace Engine
 {
     struct WindowConfig {
@@ -15,9 +18,9 @@ namespace Engine
         std::string Version;
     };
 
-    class Application {
+    class Application : public CSingleton<Application>
+    {
     public:
-        static Shared<Application> GetInstance();
         bool Init(int width, int height, const std::string& title, const std::string& version);
         bool Init(const WindowConfig& InConfig);
         void Run();
@@ -26,7 +29,6 @@ namespace Engine
         void SetTimeScale(float InScale);
 
     private:
-        Application();
         bool LoadScene();
         void ProcessInput();
         void Update(float deltaTime);

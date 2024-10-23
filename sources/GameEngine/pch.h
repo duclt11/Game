@@ -18,6 +18,7 @@
 #include<unordered_map>
 #include<map>
 #include<stack>
+#include<list>
 
 //External
 #include "raylib.h"
@@ -43,8 +44,20 @@ namespace Engine
 {
     template<typename T> using Shared = std::shared_ptr<T>;
     template<typename T> using Unique = std::unique_ptr<T>;
+
+    template<typename T, typename... Args>
+    Shared<T> MakeShared(Args&&... args) {
+        return std::make_shared<T>(std::forward<Args>(args)...);
+    }
+
+    template<typename T, typename... Args>
+    Unique<T> MakeUnique(Args&&... args) {
+        return std::make_unique<T>(std::forward<Args>(args)...);
+    }
 }
 
 #define GetDeltaTime() GetTime()
 #define GetDeltaTime() GetTime() * 1000
 #define MAX_FPS 60
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600

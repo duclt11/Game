@@ -1,13 +1,6 @@
 #include "Application.h"
-
-Engine::Shared<Engine::Application> Engine::Application::GetInstance()
-{
-	static Shared<Application> application;
-	if (application == nullptr) {
-		application.reset(new Application());
-	}
-	return application;
-}
+#include "GameState\GameStateMachine.h"
+#include "GameState\GameStateBase.h"
 
 bool Engine::Application::Init(int width, int height, const std::string& title, const std::string& version)
 {
@@ -46,10 +39,6 @@ void Engine::Application::SetTimeScale(float InScale)
 	mTimeScale = InScale;
 }
 
-Engine::Application::Application()
-{
-}
-
 bool Engine::Application::LoadScene()
 {
 	return false;
@@ -57,18 +46,22 @@ bool Engine::Application::LoadScene()
 
 void Engine::Application::ProcessInput()
 {
+	//Todo
 }
 
 void Engine::Application::Update(float deltaTime)
 {
+	if (GameStateMachine::GetInstance()->HasState())
+	{
+		GameStateMachine::GetInstance()->CurrentState()->Update(deltaTime);
+	}
 }
 
 void Engine::Application::Render(float deltaTime)
 {
-	BeginDrawing();
-
-	ClearBackground(RAYWHITE);
-
-	EndDrawing();
+	if (GameStateMachine::GetInstance()->HasState())
+	{
+		GameStateMachine::GetInstance()->CurrentState()->Draw();
+	}
 }
 
