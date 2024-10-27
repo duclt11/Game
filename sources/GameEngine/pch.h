@@ -57,7 +57,7 @@ namespace Engine
 }
 
 #define GetDeltaTime() GetTime()
-#define GetDeltaTime() GetTime() * 1000
+#define GetDeltaTimeMS() GetTime() * 1000
 #define MAX_FPS 60
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600

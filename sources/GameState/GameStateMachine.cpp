@@ -1,7 +1,7 @@
 #include "GameStateMachine.h"
 #include "GameStateBase.h"
 
-GameStateMachine::GameStateMachine()
+GameStateMachine::GameStateMachine() : m_running(true), m_pActiveState(nullptr), m_pNextState(nullptr)
 {
 }
 

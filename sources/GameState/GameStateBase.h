@@ -20,8 +20,8 @@ public:
 	virtual void HandleKeyEvents(int key, bool bIsPressed) = 0;
 	virtual void HandleTouchEvents(int x, int y, bool bIsPressed) = 0;
 	virtual void HandleMouseMoveEvents(int x, int y) = 0;
-	virtual void Update(float deltaTime) = 0;
-	virtual void Draw() = 0;
+	virtual void Update(float deltaTime);
+	virtual void Draw();
 
 	static Engine::Shared<GameStateBase> CreateState(Engine::EStateType StateType);
 

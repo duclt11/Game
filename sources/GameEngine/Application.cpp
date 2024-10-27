@@ -17,6 +17,8 @@ bool Engine::Application::Init(const WindowConfig& InConfig)
 void Engine::Application::Run()
 {
 	float LastTime = 0.0f;
+	SetTimeScale(1.0f);
+	GameStateMachine::GetInstance()->PushState(Engine::EStateType::STATE_MENU);
 	while (!WindowShouldClose())
 	{
 		float CurrentTime = GetDeltaTime();
@@ -46,11 +48,25 @@ bool Engine::Application::LoadScene()
 
 void Engine::Application::ProcessInput()
 {
+	if (!GameStateMachine::GetInstance()->HasState()) return;
+
+	int key = GetKeyPressed();
+	if (key != 0)
+	{
+		GameStateMachine::GetInstance()->CurrentState()->HandleKeyEvents(key,IsKeyPressed(key));
+	}
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		GameStateMachine::GetInstance()->CurrentState()->HandleTouchEvents(GetMouseX(), GetMouseY(), IsMouseButtonPressed(MOUSE_BUTTON_LEFT));
+	}
+	GameStateMachine::GetInstance()->CurrentState()->HandleMouseMoveEvents(GetMouseX(), GetMouseY());
+
 	//Todo
 }
 
 void Engine::Application::Update(float deltaTime)
 {
+	GameStateMachine::GetInstance()->PerformStateChange();
 	if (GameStateMachine::GetInstance()->HasState())
 	{
 		GameStateMachine::GetInstance()->CurrentState()->Update(deltaTime);
@@ -61,7 +77,9 @@ void Engine::Application::Render(float deltaTime)
 {
 	if (GameStateMachine::GetInstance()->HasState())
 	{
+		BeginDrawing();
 		GameStateMachine::GetInstance()->CurrentState()->Draw();
+		EndDrawing();
 	}
 }
 
