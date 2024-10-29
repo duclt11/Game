@@ -24,5 +24,7 @@ public:
 	void Update(float deltaTime) override;
 	void Draw() override;
 
+private:
+	void PlayGame();
 protected:
 };

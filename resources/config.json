@@ -1,0 +1,8 @@
+{
+	"PlayerHP": 5,
+	"PlayerSizeX": 80,
+	"PlayerSizeY": 20,
+	"PlayerSpeed": 10,
+	"BallSize": 10,
+	"BallSpeed": 5
+}

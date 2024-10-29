@@ -33,11 +33,11 @@ Engine::Shared<GameStateBase> GameStateBase::CreateState(Engine::EStateType Stat
         break;
     case Engine::EStateType::STATE_MENU:
     {
-        GS = std::make_shared<GS_MainMenu>();
+        GS = Engine::MakeShared<GS_MainMenu>();
         break;
     }       
     case Engine::EStateType::STATE_PLAY:
-        GS = std::make_shared<GS_GamePlay>();
+        GS = Engine::MakeShared<GS_GamePlay>();
         break;
     default:
         break;

@@ -3,6 +3,8 @@
 #include "GameEnum\GameEnum.h"
 #include "GameState\GameStateBase.h"
 
+class Paddle;
+class Ball;
 class GS_GamePlay : public GameStateBase
 {
 public:
@@ -22,5 +24,7 @@ public:
 	void HandleMouseMoveEvents(int x, int y) override;
 	void Update(float deltaTime) override;
 	void Draw() override;
-
+private:
+	std::shared_ptr<Paddle> m_paddle;
+	std::shared_ptr<Ball> m_ball;
 };
