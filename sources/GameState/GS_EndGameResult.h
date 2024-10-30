@@ -1,16 +1,13 @@
 #pragma once
 #include "GameEngine\pch.h"
 #include "GameEnum\GameEnum.h"
-#include "GameState\GameStateBase.h"
+#include "GameStateBase.h"
 
-class Paddle;
-class Ball;
-class BricksManager;
-class GS_GamePlay : public GameStateBase
+class GS_EndGameResult : public GameStateBase
 {
 public:
-	GS_GamePlay();
-	~GS_GamePlay();
+	GS_EndGameResult(bool isWin, int score, float time);
+	 ~GS_EndGameResult();
 
 public:
 	void Init() override;
@@ -25,15 +22,9 @@ public:
 	void HandleMouseMoveEvents(int x, int y) override;
 	void Update(float deltaTime) override;
 	void Draw() override;
-
-	void EndGame(bool isWin);
-	void UpdateTime(float deltaTime);
 private:
-	std::shared_ptr<Paddle> m_paddle;
-	std::shared_ptr<Ball> m_ball;
-	std::shared_ptr<BricksManager> m_bricksManager;
-
+	bool m_isWin;
 	int m_score;
 	float m_time;
-	int m_playerHP;
+
 };

@@ -9,8 +9,8 @@ public:
     GameConfigMgr();
     ~GameConfigMgr();
     void InitConfig();
-    int GetConfigAsInt(std::string config, int defaultValue);
-    float GetConfigAsFloat(std::string config, float defaultValue);
+    int GetConfigAsInt(std::string config, int defaultValue = 0);
+    float GetConfigAsFloat(std::string config, float defaultValue = 0);
 private:
     rapidjson::Document m_jsonDoc;
 

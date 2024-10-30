@@ -1,8 +1,16 @@
 {
 	"PlayerHP": 5,
-	"PlayerSizeX": 80,
+	"PlayerSizeX": 100,
 	"PlayerSizeY": 20,
 	"PlayerSpeed": 10,
 	"BallSize": 10,
-	"BallSpeed": 5
+	"BallSpeed": 5,
+	"LevelSizeX": 9,
+	"LevelSizeY": 5,
+	"BrickSizeX": 80,
+	"BrickSizeY": 40,
+	"BrickMarginX": 10,
+	"BrickMarginY": 5,
+	"ScorePerBrick": 5,
+	"Time": 300
 }

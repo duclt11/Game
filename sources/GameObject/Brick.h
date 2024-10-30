@@ -1,27 +1,25 @@
 #pragma once
 #include "GameEngine\pch.h"
 
-class Paddle
+class Brick
 {
 public:
-    Paddle();
-    ~Paddle();
+    Brick(Vector2 position, Vector2 size);
+    ~Brick();
     void Init();
     void Move(int key);
     void Draw();
     void Update();
 
-    void SetOnHPChangeFunction(std::function<void(int)> cb);
-
     Vector2 GetPosition();
     Vector2 GetSize();
 
+    bool IsActive();
     void DecreaseHP(int num = 1);
+
 private:
     Vector2 m_position;
     Vector2 m_size;
-    float m_speed;
     int m_hp;
-    std::function<void(int)> m_onHPChangeFunction;
-
+    bool m_active;
 };

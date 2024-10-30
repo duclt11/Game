@@ -51,6 +51,12 @@ void Paddle::Update()
 	}
 }
 
+void Paddle::SetOnHPChangeFunction(std::function<void(int)> cb)
+{
+	m_onHPChangeFunction = cb;
+	m_onHPChangeFunction(m_hp);
+}
+
 Vector2 Paddle::GetPosition()
 {
 	return m_position;
@@ -64,4 +70,5 @@ Vector2 Paddle::GetSize()
 void Paddle::DecreaseHP(int num)
 {
 	m_hp -= num;
+	m_onHPChangeFunction(m_hp);
 }
